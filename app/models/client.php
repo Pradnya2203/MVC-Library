@@ -15,10 +15,10 @@ class Client {
     {
         $db = \DB::get_instance();
 
-        $Sth = $db->prepare("SELECT * FROM client WHERE username= ?");
-        $Sth->execute([$Username]);
+        $stmt = $db->prepare("SELECT * FROM client WHERE username= ?");
+        $stmt->execute([$Username]);
 
-        $Result = $Sth->fetch();
+        $Result = $stmt->fetch();
         return $Result;
     }
  

@@ -11,7 +11,7 @@
     
     <table  id="books">
         <thead>
-            <tr style="height:10px" align="center">
+            <tr align="center">
                 <th>
                     Book Name
                 </th>
@@ -78,8 +78,8 @@
                     </td>
                     <td>
                      <form action= "/checkOut" method = "POST">
-                      <input type="hidden" id="bookname" name="bookname" value="{{ data.bookname }}">
-                       <input type="hidden" id="username" name="username" value="{{ client.username }}">
+                       <input  id="bookname" name="bookname"  type="hidden" value="{{ data.bookname }}">
+                       <input  id="username" name="username" type="hidden" value="{{ client.username }}">
                                        
                      <button  type="submit" class="btn btn-primary">Check Out</button>
                      </form> 

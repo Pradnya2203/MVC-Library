@@ -9,9 +9,9 @@ class Book
   public static function findAvailable()
   {
     $db = \DB::get_instance();
-    $Sth = $db->prepare("SELECT * FROM Book");
-    $Sth->execute();
-    $Result = $Sth->fetchAll();
+    $stmt = $db->prepare("SELECT * FROM Book");
+    $stmt->execute();
+    $Result = $stmt->fetchAll();
     return $Result;
   }
 
@@ -28,18 +28,18 @@ class Book
   public static function myBooks($username)
   {
     $db = \DB::get_instance();
-    $Sth = $db->prepare("SELECT * FROM books WHERE username ='$username' AND status = '1' ");
-    $Sth->execute();
-    $Result = $Sth->fetchAll();
+    $stmt = $db->prepare("SELECT * FROM books WHERE username ='$username' AND status = '1' ");
+    $stmt->execute();
+    $Result = $stmt->fetchAll();
     return $Result;
   }
   
   public static function booksData($username,$bookname)
   {
     $db = \DB::get_instance();
-    $Sth = $db->prepare("SELECT * FROM books WHERE username ='$username' AND bookname = '$bookname' ");
-    $Sth->execute();
-    $Result = $Sth->fetchAll();
+    $stmt = $db->prepare("SELECT * FROM books WHERE username ='$username' AND bookname = '$bookname' ");
+    $stmt->execute();
+    $Result = $stmt->fetchAll();
     return $Result;
   }
 
@@ -47,9 +47,9 @@ class Book
   public static function requests()
   {
     $db = \DB::get_instance();
-    $Sth = $db->prepare("SELECT * FROM books WHERE status='0'");
-    $Sth->execute();
-    $Result = $Sth->fetchAll();
+    $stmt = $db->prepare("SELECT * FROM books WHERE status='0'");
+    $stmt->execute();
+    $Result = $stmt->fetchAll();
     return $Result;
   }
 
