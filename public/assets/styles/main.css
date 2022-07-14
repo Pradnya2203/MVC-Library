@@ -47,17 +47,7 @@ a {
   input[type=hidden] {
     display: none;
   }
-/* 
-   input, select {
-    color: #000;
-    width: 50%;
-    padding: 7px 15px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  } */
+
 
   .addBook{
     color: #000;
@@ -69,7 +59,7 @@ a {
     border-radius: 4px;
     box-sizing: border-box;
   }
-  
+
   #bookname {
 display: none;  }
   
@@ -91,7 +81,6 @@ display: none;  }
   .mb-3 {
     background-color: rgba(0, 0, 0, 0.4);
     width: 35%;
-    /* background-color: #f2f2f2; */
     padding: 20px;
   }
 
