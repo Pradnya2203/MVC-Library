@@ -11,16 +11,16 @@ class Book
     $db = \DB::get_instance();
     $stmt = $db->prepare("SELECT * FROM Book");
     $stmt->execute();
-    $Result = $stmt->fetchAll();
-    return $Result;
+    $result = $stmt->fetchAll();
+    return $result;
   }
 
-  public static function addBookData($bookname, $number)
+  public static function addBookData($bookName, $number)
   {
 
     $db = \DB::get_instance();
-    $stmt = $db->prepare("INSERT INTO Book (bookname, number) VALUES (?,?)");
-    $stmt->execute([$bookname, $number]);
+    $stmt = $db->prepare("INSERT INTO Book (bookName, number) VALUES (?,?)");
+    $stmt->execute([$bookName, $number]);
 
     return;
   }
@@ -30,17 +30,17 @@ class Book
     $db = \DB::get_instance();
     $stmt = $db->prepare("SELECT * FROM books WHERE username ='$username' AND status = '1' ");
     $stmt->execute();
-    $Result = $stmt->fetchAll();
-    return $Result;
+    $result = $stmt->fetchAll();
+    return $result;
   }
   
-  public static function booksData($username,$bookname)
+  public static function booksData($username,$bookName)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("SELECT * FROM books WHERE username ='$username' AND bookname = '$bookname' ");
-    $stmt->execute();
-    $Result = $stmt->fetchAll();
-    return $Result;
+    $stmt = $db->prepare("SELECT * FROM books WHERE username ='$username' AND bookName = '$bookName' ");
+    $stmt->execute([$username , $bookName]);
+    $result = $stmt->fetchAll();
+    return $result;
   }
 
 
@@ -49,42 +49,42 @@ class Book
     $db = \DB::get_instance();
     $stmt = $db->prepare("SELECT * FROM books WHERE status='0'");
     $stmt->execute();
-    $Result = $stmt->fetchAll();
-    return $Result;
+    $result = $stmt->fetchAll();
+    return $result;
   }
 
 
-  public static function checkIn($bookname,$username)
+  public static function checkIn($bookName,$username)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("INSERT INTO books (bookname,username) VALUES (?,?)");
-    $stmt->execute([$bookname, $username]);
+    $stmt = $db->prepare("INSERT INTO books (bookName,username) VALUES (?,?)");
+    $stmt->execute([$bookName, $username]);
     return;
   }
 
-  public static function updateBook($bookname)
+  public static function updateBook($bookName)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("UPDATE Book SET number=number+1 WHERE bookname='$bookname'");
-    $stmt->execute([$bookname]);
+    $stmt = $db->prepare("UPDATE Book SET number=number+1 WHERE bookName='$bookName'");
+    $stmt->execute([$bookName]);
     return;
   }
 
-  public static function deleteBook($bookname,$username)
+  public static function deleteBook($bookName,$username)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("DELETE FROM books WHERE username='$username' AND bookname='$bookname' ");
-    $stmt->execute([$bookname, $username]);
+    $stmt = $db->prepare("DELETE FROM books WHERE username='$username' AND bookName='$bookName' ");
+    $stmt->execute([$bookName, $username]);
     return;
   }
 
-  public static function setDate($bookname,$username)
+  public static function setDate($bookName,$username)
   {
     date_default_timezone_set('Asia/Kolkata');
     $date = date('d-m-y h:i:s');
     $db = \DB::get_instance();
-    $stmt = $db->prepare("UPDATE books SET  returned_on='$date' WHERE username='$username' AND bookname='$bookname'");
-    $stmt->execute([$date,$bookname, $username]);
+    $stmt = $db->prepare("UPDATE books SET  returned_on='$date' WHERE username='$username' AND bookName='$bookName'");
+    $stmt->execute([$date,$bookName, $username]);
     return;
   }
 
@@ -95,38 +95,40 @@ class Book
     return;
   }
 
-  public static function setStatus($bookname,$username)
+  public static function setStatus($bookName,$username)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("UPDATE books SET status='1' WHERE username='$username' AND bookname='$bookname'");
-    $stmt->execute([$bookname, $username]);
+    $stmt = $db->prepare("UPDATE books SET status='1' WHERE username='$username' AND bookName='$bookName'");
+    $stmt->execute([$bookName, $username]);
     return;
   }
 
   
-  public static function setStartDate($bookname,$username)
+  public static function setStartDate($bookName,$username)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("UPDATE books SET issued_on='$date' WHERE username='$username' AND bookname='$bookname'");
-    $stmt->execute([$date,$bookname, $username]);
+    date_default_timezone_set('Asia/Kolkata');
+    $date = date('d-m-y h:i:s');
+    $stmt = $db->prepare("UPDATE books SET issued_on='$date' WHERE username='$username' AND bookName='$bookName'");
+    $stmt->execute([$date,$bookName, $username]);
     return;
   }
 
   
-  public static function updateNumber($bookname,$username)
+  public static function updateNumber($bookName)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("UPDATE Book SET number=number-1 WHERE bookname='$bookname'");
-    $stmt->execute([$bookname]);
+    $stmt = $db->prepare("UPDATE Book SET number=number-1 WHERE bookName='$bookName'");
+    $stmt->execute([$bookName]);
     return;
   }
 
 
-  public static function denyReq($bookname,$username)
+  public static function denyReq($bookName,$username)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("DELETE FROM books WHERE username='$username' AND bookname='$bookname'");
-    $stmt->execute([$bookname, $username]);
+    $stmt = $db->prepare("DELETE FROM books WHERE username='$username' AND bookName='$bookName'");
+    $stmt->execute([$bookName, $username]);
     return;
   }
 

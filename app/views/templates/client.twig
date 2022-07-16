@@ -26,21 +26,21 @@
         </thead>
 
         <tbody>
-            {% for bookdata in booksavailable %}
+            {% for bookData in booksAvailable %}
                    
                 <tr align="center">
                    <td>
-                        {{ bookdata.bookname }} 
+                        {{ bookData.bookName }} 
                     </td>
 
                     <td>
-                        {{ bookdata.number }}
+                        {{ bookData.number }}
                     </td>
                  
                     <td>
                     <form action= "/checkIn" method = "POST">
                     <input type="text" name="username" hidden value="{{ client.username }}">
-                     <input type="text" name="bookname" hidden value = "{{ bookdata.bookname }}">
+                     <input type="text" name="bookName" hidden value = "{{ bookData.bookName }}">
                         
                          <button  type="submit" class="btn btn-primary">Check In</button>
                           </form> 
@@ -74,11 +74,11 @@
                    
                 <tr align="center">   
                     <td>
-                        {{ data.bookname }} 
+                        {{ data.bookName }} 
                     </td>
                     <td>
                      <form action= "/checkOut" method = "POST">
-                       <input  id="bookname" name="bookname"  type="hidden" value="{{ data.bookname }}">
+                       <input  id="bookName" name="bookName"  type="hidden" value="{{ data.bookName }}">
                        <input  id="username" name="username" type="hidden" value="{{ client.username }}">
                                        
                      <button  type="submit" class="btn btn-primary">Check Out</button>

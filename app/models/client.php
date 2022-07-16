@@ -4,22 +4,21 @@ namespace Model;
 
 class Client {
  
-    public static function createUser($Name, $Username, $Password)
+    public static function createUser($name, $username, $password)
     {
         $db = \DB::get_instance();
-        $stmt = $db->prepare("INSERT INTO client (Name, Username ,Password) VALUES (?,?,?)");
-        $stmt->execute([$Name, $Username, $Password]);
+        $stmt = $db->prepare("INSERT INTO client (name, username ,password) VALUES (?,?,?)");
+        $stmt->execute([$name, $username, $password]);
     }
 
-    public static function verifyLogin($Username, $Password)
+    public static function verifyLogin($username)
     {
         $db = \DB::get_instance();
 
         $stmt = $db->prepare("SELECT * FROM client WHERE username= ?");
-        $stmt->execute([$Username]);
-
-        $Result = $stmt->fetch();
-        return $Result;
+        $stmt->execute([$username]);
+        $result = $stmt->fetch();
+        return $result;
     }
  
 

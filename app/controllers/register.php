@@ -11,13 +11,13 @@ class Register {
     public function post()
     {
         session_start();
-        $Name = $_POST["name"];
-        $Username = $_POST["username"];
-        $Password = $_POST["password"];
-        $Password = hash("sha512", $Password);
+        $name = $_POST["name"];
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        $password = hash("sha512", $password);
 
-        \Model\Client::createUser($Name, $Username, $Password);
-        echo "$Name Registered";
+        \Model\Client::createUser($name, $username, $password);
+        echo "$name registered";
         echo \View\Loader::make()->render("templates/home.twig");
         session_destroy();
     }

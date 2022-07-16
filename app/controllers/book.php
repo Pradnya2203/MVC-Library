@@ -7,7 +7,7 @@ public function get()
 {
 
         echo \View\Loader::make()->render("templates/book.twig", array(
-            "booksavailable" => \Model\Book::findAvailable(),
+            "booksAvailable" => \Model\Book::findAvailable(),
 
         ));
     
@@ -19,25 +19,24 @@ public function post()
 
          if (!isset($_SESSION["Role"])) {
            echo \View\Loader::make()->render("templates/home.twig");
-         } else {
+         }
+         else {
 
-            $bookname = $_POST["bookname"];
+            $bookName = $_POST["bookName"];
             $number = $_POST["number"];
 
             if ($number < 0) {
 
                 echo \View\Loader::make()->render("templates/admin.twig", array(
-                    "invaliddata" => true,
-                    "bookdata" =>  \Model\Book::findAvailable(),
+                    "invalidData" => true,
+                    "bookData" =>  \Model\Book::findAvailable(),
 
                 ));
             } else {
-                \Model\Book::addBookData($bookname, $number);
+                \Model\Book::addBookData($bookName, $number);
                 echo "added book data";
 
                  echo \View\Loader::make()->render("templates/home.twig", array(
-                    
-
                  ));
             }
         }

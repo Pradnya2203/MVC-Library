@@ -6,10 +6,10 @@ class CheckOut{
 
     public function post()
     {
-        $bookname = $_POST["bookname"];
+        $bookName = $_POST["bookName"];
         $username = $_POST["username"];
         
-        $books = \Model\Book::booksData($username,$bookname);
+        $books = \Model\Book::booksData($username,$bookName);
         date_default_timezone_set('Asia/Kolkata');
         $date = date('d-m-y h:i:s');
 
@@ -18,12 +18,12 @@ class CheckOut{
             $fine=0;
         }
 
-        \Model\Book::setDate($bookname,$username);
-        \Model\Book::deleteBook($bookname,$username);
-        \Model\Book::setFine($bookname,$fine);
-        \Model\Book::updateBook($bookname);
+        \Model\Book::setDate($bookName,$username);
+        \Model\Book::deleteBook($bookName,$username);
+        \Model\Book::setFine($bookName,$fine);
+        \Model\Book::updateBook($bookName);
     
-        echo "$bookname Checked Out";
+        echo "$bookName Checked Out";
         echo \View\Loader::make()->render("templates/home.twig");
     }
 

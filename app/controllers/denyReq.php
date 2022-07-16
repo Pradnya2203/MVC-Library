@@ -10,10 +10,10 @@ class DenyReq{
             echo \View\Loader::make()->render("templates/home.twig");
           } else {
 
-        $bookname = $_POST["bookname"];
+        $bookName = $_POST["bookName"];
         $username = $_POST["username"];
     
-        \Model\Book::denyReq($bookname,$username);
+        \Model\Book::denyReq($bookName,$username);
         echo "Denied request";
     echo \View\Loader::make()->render("templates/home.twig");
     }

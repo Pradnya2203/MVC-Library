@@ -7,9 +7,9 @@ class CheckIn{
 
     public function post()
     {
-        $bookname = $_POST["bookname"];
+        $bookName = $_POST["bookName"];
         $username = $_POST["username"];
-        \Model\Book::checkIn($bookname,$username);
+        \Model\Book::checkIn($bookName,$username);
         echo "Check in request sent";
 
         echo \View\Loader::make()->render("templates/home.twig");

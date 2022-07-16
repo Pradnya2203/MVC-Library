@@ -7,12 +7,12 @@ class AcceptReq{
         session_start();
     if (!isset($_SESSION["Role"])) {
         echo \View\Loader::make()->render("templates/home.twig");
-      } else {
-    $bookname = $_POST["bookname"];
+      } else {       
+    $bookName = $_POST["bookName"];
     $username = $_POST["username"];
-    \Model\Book::setStatus($bookname,$username);
-    \Model\Book:: setStartDate($bookname,$username);
-    \Model\Book::updateNumber($bookname);
+    \Model\Book::setStatus($bookName,$username);
+    \Model\Book:: setStartDate($bookName,$username);
+    \Model\Book::updateNumber($bookName);
     echo "Accepted request";
     echo \View\Loader::make()->render("templates/home.twig");
 

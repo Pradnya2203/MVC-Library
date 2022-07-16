@@ -60,7 +60,7 @@ a {
     box-sizing: border-box;
   }
 
-  #bookname {
+  #bookName {
 display: none;  }
   
   button[type=submit] {

@@ -35,15 +35,15 @@
         </thead>
 
         <tbody>
-            {% for bookdata in booksavailable %}
+            {% for bookData in booksAvailable %}
                    
                 <tr align="center">
                   <td>
-                        {{ bookdata.bookname }} 
+                        {{ bookData.bookName }} 
                     </td>
 
                     <td>
-                        {{ bookdata.number }}
+                        {{ bookData.number }}
                     </td>
                  
        
@@ -56,7 +56,7 @@
 
   <div class="mb-3">
     <label>Book Name</label>
-    <input type="text" name="bookname" class="form-control addBook"  > 
+    <input type="text" name="bookName" class="form-control addBook"  > 
   </div>
 
   <div class="mb-3">
@@ -89,28 +89,28 @@
         </thead>
 
         <tbody>
-            {% for bookdata in requests %}
+            {% for bookData in requests %}
                    
                 <tr align="center">
 
                     <td>
-                        {{ bookdata.bookname }}
+                        {{ bookData.bookName }}
                     </td>
                     <td>
-                        {{ bookdata.username }} 
+                        {{ bookData.username }} 
                     </td>
                     <td>   
                        <form action= "/acceptReq" method = "POST">
-                        <input type="hidden" id="bookname" name="bookname" value="{{ bookdata.bookname }}">
-                       <input type="hidden" id="username" name="username" value="{{ bookdata.username }}">
+                        <input type="hidden" id="bookName" name="bookName" value="{{ bookData.bookName }}">
+                       <input type="hidden" id="username" name="username" value="{{ bookData.username }}">
                                          
                      <button  type="submit" class="btn btn-primary">Accept</button>
                      </form> 
                     </td>
                      <td>
                      <form action= "/denyReq" method = "POST">
-                     <input type="hidden" id="bookname" name="bookname" value = "{{ bookdata.bookname }}">
-                     <input type="hidden" id="username" name="username" value="{{ bookdata.username }}">                       
+                     <input type="hidden" id="bookName" name="bookName" value = "{{ bookData.bookName }}">
+                     <input type="hidden" id="username" name="username" value="{{ bookData.username }}">                       
                      <button  type="submit" class="btn btn-primary">Deny</button>
                      </form> 
                    

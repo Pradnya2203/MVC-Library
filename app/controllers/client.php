@@ -9,41 +9,34 @@ class Client {
     {
         session_start();
 
-        $Username = $_POST["username"];
-        $Password = $_POST["password"]; 
-        $Result = \Model\Client::verifyLogin($Username, $Password);
-        
+        $username = $_POST["username"];
+        $password = $_POST["password"]; 
+        $result = \Model\Client::verifyLogin($username);
 
-        if ($Result['username'] == null) {
-            echo "enter username";
+        if ($result['username'] == null || $result['password'] == null) {
+            echo "enter user details";
             echo \View\Loader::make()->render("templates/home.twig");
 
         } 
-        else if ($Result['password'] == null) {
-            echo "enter password";
-            echo \View\Loader::make()->render("templates/home.twig");
+        else if (hash("sha512", $password) === $result['password'] && $result['username'] === "artemis")  {
 
-        }else if (hash("sha512", $Password) === $Result['password']) {
-
-            $_SESSION["Username"] = $Username;
+            $_SESSION["username"] = $username;
             $_SESSION["Role"] = "Admin";
-            if($Result['username'] === "artemis"){
                 echo \View\Loader::make()->render("templates/admin.twig",array(
                     "requests" => \Model\Book::requests(),
-                    "booksavailable" => \Model\Book::findAvailable(),
-                ));
-
-            }else{
-                $_SESSION["Username"] = $Username;
-                echo \View\Loader::make()->render("templates/client.twig", array(
-                    "client" => \Model\Client::verifyLogin($Username,$Password),
-                    "booksavailable" => \Model\Book::findAvailable(),
-                    "myBooks" =>  \Model\Book::myBooks($Username),
-    
+                    "booksAvailable" => \Model\Book::findAvailable(),
                 ));
             }
+        else if(hash("sha512", $password) === $result['password'] ){
+            $_SESSION["username"] = $username;
+            echo \View\Loader::make()->render("templates/client.twig", array(
+                "client" => \Model\Client::verifyLogin($username,$password),
+                "booksAvailable" => \Model\Book::findAvailable(),
+                "myBooks" =>  \Model\Book::myBooks($username),
+                ));
+            
         } else {
-            echo "wrong pw";
+            echo "Wrong password";
             echo \View\Loader::make()->render("templates/home.twig", array(
                 "wrongpw" => true,
             ));
