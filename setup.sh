@@ -18,9 +18,10 @@ else
 
     $DB_HOST 
 	$DB_PORT 
-    $DB_PASSWORD
-    $DB_USERNAME
     $DB_NAME
+    $DB_USERNAME
+    $DB_PASSWORD
+    
 
     echo 'Enter the given database config file'
 	echo 'Enter DB_HOST:'
@@ -42,7 +43,7 @@ else
 	echo '$DB_PASSWORD= "'$DB_PASSWORD'";'>>config/config.php
 	echo '?>'>>config/config.php
 
-	mysql -u $DB_USERNAME -p $DB_NAME<schema/schema.sql
+	mysql -u $DB_USERNAME -p $DB_NAME < schema/schema.sql
 
     echo "Starting server at port 8000"
 	cd public

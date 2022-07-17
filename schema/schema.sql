@@ -49,7 +49,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for dumped tables
 --
 CREATE TABLE `books` (
-  `bookname` varchar(255) ,
+  `bookName` varchar(255) ,
   `username` varchar(255) ,
   `status` int SET DEFAULT(0),
   `issued_on` datetime,
@@ -60,7 +60,7 @@ CREATE TABLE `books` (
 --
 
 CREATE TABLE `Book` (
-  `bookname` varchar(255) ,
+  `bookName` varchar(255) ,
   `number` int SET DEFAULT(0)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
@@ -68,4 +68,4 @@ CREATE TABLE `Book` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 ALTER TABLE `Book`
-  ADD PRIMARY KEY (`bookname`);
+  ADD PRIMARY KEY (`bookName`);
