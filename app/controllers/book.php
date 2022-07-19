@@ -25,6 +25,7 @@ public function post()
             $bookName = $_POST["bookName"];
             $number = $_POST["number"];
 
+
             if ($number < 0) {
 
                 echo \View\Loader::make()->render("templates/admin.twig", array(
@@ -36,7 +37,9 @@ public function post()
                 \Model\Book::addBookData($bookName, $number);
                 echo "added book data";
 
-                 echo \View\Loader::make()->render("templates/home.twig", array(
+                 echo \View\Loader::make()->render("templates/admin.twig", array(
+                    "requests" => \Model\Book::requests(),
+                    "booksAvailable" => \Model\Book::findAvailable(),
                  ));
             }
         }

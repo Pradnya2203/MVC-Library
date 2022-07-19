@@ -18,7 +18,7 @@ class Client {
             echo \View\Loader::make()->render("templates/home.twig");
 
         } 
-        else if (hash("sha512", $password) === $result['password'] && $result['username'] === "artemis")  {
+        else if (hash("sha512", $password) === $result['password'] && $result['admin'] == 1)  {
 
             $_SESSION["username"] = $username;
             $_SESSION["Role"] = "Admin";

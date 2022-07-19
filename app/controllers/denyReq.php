@@ -15,7 +15,10 @@ class DenyReq{
     
         \Model\Book::denyReq($bookName,$username);
         echo "Denied request";
-    echo \View\Loader::make()->render("templates/home.twig");
+    echo \View\Loader::make()->render("templates/admin.twig", array(
+        "requests" => \Model\Book::requests(),
+        "booksAvailable" => \Model\Book::findAvailable(),
+     ));
     }
 }
 
