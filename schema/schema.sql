@@ -12,7 +12,8 @@ CREATE TABLE client (
   name varchar(255) ,
   username varchar(255) ,
   password varchar(255),
-  fine int DEFAULT 0
+  fine int DEFAULT 0,
+  admin int DEFAULT 0
 );
 
 --

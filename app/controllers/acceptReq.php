@@ -3,6 +3,17 @@
 namespace Controller;
 
 class AcceptReq{
+
+    public function get()
+      {
+
+        echo \View\Loader::make()->render("templates/book.twig", array(
+            "booksAvailable" => \Model\Book::findAvailable(),
+
+        ));
+    
+      }
+
     public function post(){
         session_start();
     if (!isset($_SESSION["Role"])) {
@@ -13,7 +24,7 @@ class AcceptReq{
     $username = $_POST["username"];
     $availableBook = \Model\Book::booksLeft($bookName);
 
-    if($availableBook['number'] <= 0){
+    if($availableBook['number'] == 0){
         \Model\Book::denyReq($bookName,$username);
         echo "No Books Available";
         echo \View\Loader::make()->render("templates/admin.twig", array(

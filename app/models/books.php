@@ -18,10 +18,12 @@ class Book
   public static function booksLeft($bookName)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("SELECT * FROM Book WHERE bookName = ? ");
-    $stmt->execute($bookName);
-    $result = $stmt->fetchAll();
+
+    $stmt = $db->prepare("SELECT * FROM Book WHERE bookName= ?");
+    $stmt->execute([$bookName]);
+    $result = $stmt->fetch();
     return $result;
+    
   }
 
   public static function addBookData($bookName, $number)

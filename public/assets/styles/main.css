@@ -33,7 +33,7 @@ a {
   #books tr:nth-child(even){background-color: #a3765c;}
   #books tr:nth-child(odd){background-color: #dbc1ac;}
   
-  #books tr:hover {background-color: #afa695;}
+  #books tr:hover {background-color: #936a53;}
   
   #books th {
     height:10px;

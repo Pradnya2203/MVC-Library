@@ -5,6 +5,10 @@ namespace Controller;
 
 class Client {
 
+    public function get() {
+        echo \View\Loader::make()->render("templates/home.twig");
+    }
+
     public function post()
     {
         session_start();
