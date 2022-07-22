@@ -6,6 +6,10 @@
 
 1. Clone the repository and `cd` into it.
 
+1. Install php using:
+    > sudo apt update
+    > sudo apt install PHP
+
 1. Install composer using:
     ```console
     > curl -s https://getcomposer.org/installer | php

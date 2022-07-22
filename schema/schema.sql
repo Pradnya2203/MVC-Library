@@ -22,9 +22,9 @@ CREATE TABLE client (
 ALTER TABLE client
   ADD PRIMARY KEY (username);
 
----
----Insert login details and use password blahblah for both users
----
+--
+-- Insert login details and use password blahblah for both users
+--
 
 INSERT INTO client VALUES('Pradnya','artemis', 'b8dfd29b2dd922fd494fb63a427e519dfaabc4489a4ade985c8eaaaef051a0f52
 72fd75ddda34211039997f8896b5f3693cd92eb75ea2bf786884aa0e31b9b36',0,1);

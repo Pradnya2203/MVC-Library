@@ -7,6 +7,7 @@ then
     cd public
     php -S localhost:8000
 else
+	set -e
 
     echo "Create a new database and then press enter"
     curl -s https://getcomposer.org/installer | php
