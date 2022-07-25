@@ -94,7 +94,33 @@
 
 <p >The amount of pending fine is {{ client.fine }}</p>
 
+
+<h3> Pending requests </h3>
+    
+    <table class="table table-dark table-striped" id="books">
+        <thead>
+            <tr align="center">
+                <th>
+                    Book Name
+                </th>
+               
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for bookData in myRequests %}
+                   
+                <tr align="center">
+
+                    <td>
+                        {{ bookData.bookName }}
+                    </td>
+                   
+                {% endfor %}
+            </tbody>
+        </table>
+
 <form action= "/" method = "GET">
-<button  type="submit" class="btn btn-primary">Home</button>
+<button  type="submit" class="btn btn-primary">Logout</button>
 </form> 
 {% endblock %}

@@ -64,6 +64,38 @@ class Book
     return $result;
   }
 
+  public static function myRequests($username)
+  {
+    $db = \DB::get_instance();
+    $stmt = $db->prepare("SELECT * FROM books WHERE status='0' AND username = '$username'");
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+  }
+
+  public static function requestedBook($username)
+  {
+    
+        $db = \DB::get_instance();
+
+        $stmt = $db->prepare("SELECT bookName FROM books WHERE username='$username'");
+        $stmt->execute([$username]);
+        $result = $stmt->fetchAll();
+        return $result;
+  }
+
+  public static function Book()
+  {
+    
+        $db = \DB::get_instance();
+
+        $stmt = $db->prepare("SELECT bookName FROM Book");
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+  }
+
+
 
   public static function checkIn($bookName,$username)
   {

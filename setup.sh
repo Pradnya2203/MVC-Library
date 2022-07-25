@@ -34,7 +34,7 @@ else
 	echo 'Enter DB_USERNAME:'
 	read DB_USERNAME
 	echo 'Enter DB_PASSWORD:'
-	read DB_PASSWORD
+	read -s DB_PASSWORD
 
 	echo '<?php'>config/config.php
 	echo '$DB_HOST= "'$DB_HOST'";'>>config/config.php

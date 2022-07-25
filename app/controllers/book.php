@@ -25,7 +25,21 @@ public function post()
             $bookName = $_POST["bookName"];
             $number = $_POST["number"];
 
-
+            $Book = \Model\Book::Book();
+       
+     
+            foreach ($Book as $value) {
+                if ($bookName == $value[0]){
+                    echo "Books is already present in Library";
+        
+                    echo \View\Loader::make()->render("templates/admin.twig", array(
+                        "requests" => \Model\Book::requests(),
+                        "booksAvailable" => \Model\Book::findAvailable(),
+                     ));
+                        return;
+                }
+            }
+            
             if ($number < 0) {
 
                 echo \View\Loader::make()->render("templates/admin.twig", array(

@@ -37,6 +37,7 @@ class Client {
                 "client" => \Model\Client::verifyLogin($username,$password),
                 "booksAvailable" => \Model\Book::findAvailable(),
                 "myBooks" =>  \Model\Book::myBooks($username),
+                "myRequests" =>  \Model\Book::myRequests($username),
                 ));
             
         } else {
