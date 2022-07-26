@@ -84,6 +84,14 @@ display: none;  }
     padding: 20px;
   }
 
+  .errorMessage {
+    color: red;
+    background-color: #b7b3b3;
+  }
+  .confirmMessage {
+    color: green;
+    background-color: #b7b3b3;
+  }
 #register {
   display: inline;
 }

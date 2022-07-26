@@ -3,7 +3,7 @@
 {% block title %} Admin view{% endblock %}
 
 {% block body %}
-
+{% error %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,6 +14,15 @@
   <body>
 
 
+<div class="errorMessage">
+  <h3>{{ error }}</h3>
+
+</div>
+
+<div class="confirmMessage">
+  <h3>{{ confirm }}</h3>
+
+</div>
 
 <h2>Welcome to Admin Portal</h2>
 
@@ -24,6 +33,9 @@
         <thead>
             <tr align="center">
               
+               <th>
+                    Book ID
+                </th>
                 <th>
                     Book Name
                 </th>
@@ -38,6 +50,9 @@
             {% for bookData in booksAvailable %}
                    
                 <tr align="center">
+                 <td>
+                        {{ bookData.ID }} 
+                    </td>
                   <td>
                         {{ bookData.bookName }} 
                     </td>
@@ -62,6 +77,11 @@
   <div class="mb-3">
     <label>Number</label>
     <input type="text" name="number" class="form-control addBook"  >
+  </div>
+
+    <div class="mb-3">
+    <label>ID</label>
+    <input type="text" name="ID" class="form-control addBook"  >
   </div>
   
   <button type="submit" class="btn btn-primary">Add Book</button>

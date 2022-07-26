@@ -33,9 +33,10 @@ class CheckOut{
         \Model\Book::deleteBook($bookName,$username);
         \Model\Book::setFine($bookName,$fine);
         \Model\Book::updateBook($bookName);
-    
-        echo "$bookName Checked Out";
+       
+
         echo \View\Loader::make()->render("templates/client.twig", array(
+            "confirm" => "$bookName Checked Out",
             "client" => \Model\Client::verifyLogin($username,$password),
             "booksAvailable" => \Model\Book::findAvailable(),
             "myBooks" =>  \Model\Book::myBooks($username),

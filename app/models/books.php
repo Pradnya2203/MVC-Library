@@ -18,7 +18,6 @@ class Book
   public static function booksLeft($bookName)
   {
     $db = \DB::get_instance();
-
     $stmt = $db->prepare("SELECT * FROM Book WHERE bookName= ?");
     $stmt->execute([$bookName]);
     $result = $stmt->fetch();
@@ -26,12 +25,12 @@ class Book
     
   }
 
-  public static function addBookData($bookName, $number)
+  public static function addBookData($bookName, $number,$ID)
   {
 
     $db = \DB::get_instance();
-    $stmt = $db->prepare("INSERT INTO Book (bookName, number) VALUES (?,?)");
-    $stmt->execute([$bookName, $number]);
+    $stmt = $db->prepare("INSERT INTO Book (bookName, number,ID) VALUES (?,?,?)");
+    $stmt->execute([$bookName, $number,$ID]);
 
     return;
   }
@@ -84,12 +83,12 @@ class Book
         return $result;
   }
 
-  public static function Book()
+  public static function ID()
   {
     
         $db = \DB::get_instance();
 
-        $stmt = $db->prepare("SELECT bookName FROM Book");
+        $stmt = $db->prepare("SELECT ID FROM Book");
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;

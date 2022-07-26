@@ -41,9 +41,10 @@ class Client {
                 ));
             
         } else {
-            echo "Wrong password";
+            
             echo \View\Loader::make()->render("templates/home.twig", array(
-                "wrongpw" => true,
+                "error" => "Wrong Password"
+            
             ));
         }
     }

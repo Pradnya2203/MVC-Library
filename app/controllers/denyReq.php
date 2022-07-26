@@ -23,11 +23,14 @@ class DenyReq{
         $username = $_POST["username"];
     
         \Model\Book::denyReq($bookName,$username);
-        echo "Denied request";
+       
+     
     echo \View\Loader::make()->render("templates/admin.twig", array(
+        "confirm" => "Denied request",
         "requests" => \Model\Book::requests(),
         "booksAvailable" => \Model\Book::findAvailable(),
      ));
+
     }
 }
 

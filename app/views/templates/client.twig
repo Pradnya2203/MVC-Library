@@ -5,13 +5,28 @@
 {% block title %} Client view - {{ client.username }}{% endblock %}
 
 {% block body %}
+
+<div class="errorMessage">
+  <h3>{{ error }}</h3>
+
+</div>
+
+<div class="confirmMessage">
+  <h3>{{ confirm }}</h3>
+
+</div>
+
 <h1>Welcome {{ client.name }}</h1>
+
 
 <h2> Books Available In Library </h2>
     
     <table  id="books">
         <thead>
             <tr align="center">
+            <th>
+                    Book ID
+                </th>
                 <th>
                     Book Name
                 </th>
@@ -29,6 +44,10 @@
             {% for bookData in booksAvailable %}
                    
                 <tr align="center">
+
+                   <td>
+                        {{ bookData.ID }} 
+                    </td>
                    <td>
                         {{ bookData.bookName }} 
                     </td>

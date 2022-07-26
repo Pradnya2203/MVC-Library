@@ -51,22 +51,23 @@ CREATE TABLE books (
 
 CREATE TABLE Book (
   bookName varchar(255) ,
-  number int DEFAULT 0
+  number int DEFAULT 0,
+  ID int,
 );
 
 --
--- MAKE bookName AS PRIMARY KEY
+-- MAKE ID AS PRIMARY KEY
 --
 
 ALTER TABLE Book
-  ADD PRIMARY KEY (bookName);
+  ADD PRIMARY KEY (ID);
 
-INSERT INTO Book VALUES('Dune', 9);
-INSERT INTO Book VALUES('Harry Potter', 10);
-INSERT INTO Book VALUES('Paper towns', 8);
-INSERT INTO Book VALUES('Percy Jackson', 13);
-INSERT INTO Book VALUES('Mortal Instruments', 15);
-INSERT INTO Book VALUES('Sapiens', 19);
-INSERT INTO Book VALUES('Maze Runner', 12);
+INSERT INTO Book VALUES('Dune', 9,1);
+INSERT INTO Book VALUES('Harry Potter', 10,2);
+INSERT INTO Book VALUES('Paper towns', 8,3);
+INSERT INTO Book VALUES('Percy Jackson', 13,4);
+INSERT INTO Book VALUES('Mortal Instruments', 15,5);
+INSERT INTO Book VALUES('Sapiens', 19,6);
+INSERT INTO Book VALUES('Maze Runner', 12,7);
    
    

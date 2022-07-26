@@ -17,8 +17,10 @@ class Register {
         $password = hash("sha512", $password);
 
         \Model\Client::createUser($name, $username, $password);
-        echo "$name registered";
-        echo \View\Loader::make()->render("templates/home.twig");
+       
+        echo \View\Loader::make()->render("templates/home.twig",array(
+            "confirm" => "$name registered",
+        ));
         session_destroy();
     }
 
