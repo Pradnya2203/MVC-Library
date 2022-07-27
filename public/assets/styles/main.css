@@ -92,6 +92,9 @@ display: none;  }
     color: green;
     background-color: #b7b3b3;
   }
+  .home{
+   margin-left: 80%;
+  }
 #register {
   display: inline;
 }

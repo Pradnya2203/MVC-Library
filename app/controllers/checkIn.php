@@ -21,31 +21,35 @@ class CheckIn{
         $bookName = $_POST["bookName"];
         $username = $_POST["username"];
 
-        $requestedBook = \Model\Book::requestedBook($username);
+        $requests = \Model\Book::requests($username);
        
-        $availableBook = \Model\Book::booksLeft($bookName);
+        $availableBook = \Model\Book::findAvailable();
+        
+        foreach ($availableBook as $value){
+            if($value[0]==$bookName){
+                $number = $value[1];
+            }
+        }
 
-        if($availableBook['number'] == 0){
+        if($number == 0){
             \Model\Book::denyReq($bookName,$username);
             
             echo \View\Loader::make()->render("templates/client.twig", array(
                 "error" => "No books available",
                 "client" => \Model\Client::verifyLogin($username),
                 "booksAvailable" => \Model\Book::findAvailable(),
-                "myBooks" =>  \Model\Book::myBooks($username),
-                "myRequests" =>  \Model\Book::myRequests($username),
+                "requests" =>  \Model\Book::requests(),
              ));
         }else{
-    foreach ($requestedBook as $value) {
-        if ($bookName == $value[0]){
+    foreach ($requests as $value) {
+        if ($bookName == $value[0] && $username == $value[1]){
            
 
             echo \View\Loader::make()->render("templates/client.twig", array(
                 "error" => "Already Checked in",
                 "client" => \Model\Client::verifyLogin($username),
                 "booksAvailable" => \Model\Book::findAvailable(),
-                "myBooks" =>  \Model\Book::myBooks($username),
-                "myRequests" =>  \Model\Book::myRequests($username),
+                "requests" =>  \Model\Book::requests(),
                 ));
                 return;
         }
@@ -62,8 +66,7 @@ class CheckIn{
             "confirm" => "Check in request sent",
             "client" => \Model\Client::verifyLogin($username),
             "booksAvailable" => \Model\Book::findAvailable(),
-            "myBooks" =>  \Model\Book::myBooks($username),
-            "myRequests" =>  \Model\Book::myRequests($username),
+            "requests" =>  \Model\Book::requests(),
             ));
         
         }

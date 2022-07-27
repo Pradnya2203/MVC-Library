@@ -26,6 +26,7 @@ class AcceptReq{
     \Model\Book::setStatus($bookName,$username);
     \Model\Book:: setStartDate($bookName,$username);
     \Model\Book::updateNumber($bookName);
+
     
   
     echo \View\Loader::make()->render("templates/admin.twig", array(

@@ -12,7 +12,12 @@
     <title>Bootstrap demo</title>
   </head>
   <body>
-
+  <div class="home">
+    <form action= "/" method = "GET">                             
+        <button  type="submit" class="btn btn-primary">Logout</button>
+    </form>
+    </div>
+     
 
 <div class="errorMessage">
   <h3>{{ error }}</h3>
@@ -112,7 +117,7 @@
             {% for bookData in requests %}
                    
                 <tr align="center">
-
+                {% if bookData.status == 0 %}
                     <td>
                         {{ bookData.bookName }}
                     </td>
@@ -135,14 +140,12 @@
                      </form> 
                    
                     </td>
+                    {% endif %}
                 {% endfor %}
             </tbody>
         </table>
 
-    <form action= "/" method = "GET">                             
-        <button  type="submit" class="btn btn-primary">Logout</button>
-    </form>
-     
+
 </body>
 </html>
 {% endblock %}

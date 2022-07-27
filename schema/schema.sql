@@ -52,7 +52,7 @@ CREATE TABLE books (
 CREATE TABLE Book (
   bookName varchar(255) ,
   number int DEFAULT 0,
-  ID int,
+  ID int
 );
 
 --

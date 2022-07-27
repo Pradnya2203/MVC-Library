@@ -15,16 +15,6 @@ class Book
     return $result;
   }
 
-  public static function booksLeft($bookName)
-  {
-    $db = \DB::get_instance();
-    $stmt = $db->prepare("SELECT * FROM Book WHERE bookName= ?");
-    $stmt->execute([$bookName]);
-    $result = $stmt->fetch();
-    return $result;
-    
-  }
-
   public static function addBookData($bookName, $number,$ID)
   {
 
@@ -35,53 +25,15 @@ class Book
     return;
   }
 
-  public static function myBooks($username)
-  {
-    $db = \DB::get_instance();
-    $stmt = $db->prepare("SELECT * FROM books WHERE username ='$username' AND status = '1' ");
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
-  }
-  
-  public static function booksData($username,$bookName)
-  {
-    $db = \DB::get_instance();
-    $stmt = $db->prepare("SELECT * FROM books WHERE username ='$username' AND bookName = '$bookName' ");
-    $stmt->execute([$username , $bookName]);
-    $result = $stmt->fetchAll();
-    return $result;
-  }
-
-
   public static function requests()
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("SELECT * FROM books WHERE status='0'");
+    $stmt = $db->prepare("SELECT * FROM books");
     $stmt->execute();
     $result = $stmt->fetchAll();
     return $result;
   }
 
-  public static function myRequests($username)
-  {
-    $db = \DB::get_instance();
-    $stmt = $db->prepare("SELECT * FROM books WHERE status='0' AND username = '$username'");
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
-  }
-
-  public static function requestedBook($username)
-  {
-    
-        $db = \DB::get_instance();
-
-        $stmt = $db->prepare("SELECT bookName FROM books WHERE username='$username'");
-        $stmt->execute([$username]);
-        $result = $stmt->fetchAll();
-        return $result;
-  }
 
   public static function ID()
   {
@@ -171,6 +123,13 @@ class Book
     $db = \DB::get_instance();
     $stmt = $db->prepare("DELETE FROM books WHERE username='$username' AND bookName='$bookName'");
     $stmt->execute([$bookName, $username]);
+    return;
+  }
+
+  public static function books($username){
+    $db = \DB::get_instance();
+    $stmt = $db->prepare(" SELECT bookName,status FROM books JOIN Book USING (bookName) WHERE username='$username';");
+    $stmt->execute([$username]);
     return;
   }
 

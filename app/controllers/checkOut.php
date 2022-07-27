@@ -20,11 +20,17 @@ class CheckOut{
         $bookName = $_POST["bookName"];
         $username = $_POST["username"];
         
-        $books = \Model\Book::booksData($username,$bookName);
+        $books = \Model\Book::requests();
         date_default_timezone_set('Asia/Kolkata');
         $date = date('d-m-y h:i:s');
 
-        $fine = (($date-$books[3])/1000*60*60*24)-7;
+        foreach($books as $value){
+            if($value[0] == $bookName && $value[1] == $username){
+                $Date = $value[3];
+            }
+        }
+
+        $fine = (($date-$Date[3])/1000*60*60*24)-7;
         if($fine <=0){
             $fine=0;
         }
@@ -39,8 +45,7 @@ class CheckOut{
             "confirm" => "$bookName Checked Out",
             "client" => \Model\Client::verifyLogin($username,$password),
             "booksAvailable" => \Model\Book::findAvailable(),
-            "myBooks" =>  \Model\Book::myBooks($username),
-            "myRequests" =>  \Model\Book::myRequests($username),
+            "requests" =>  \Model\Book::requests(),
             
             ));
     }

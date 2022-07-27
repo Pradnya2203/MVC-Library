@@ -36,15 +36,14 @@ class Client {
             echo \View\Loader::make()->render("templates/client.twig", array(
                 "client" => \Model\Client::verifyLogin($username,$password),
                 "booksAvailable" => \Model\Book::findAvailable(),
-                "myBooks" =>  \Model\Book::myBooks($username),
-                "myRequests" =>  \Model\Book::myRequests($username),
+                "requests" =>  \Model\Book::requests(),
                 ));
             
         } else {
             
             echo \View\Loader::make()->render("templates/home.twig", array(
                 "error" => "Wrong Password"
-            
+              
             ));
         }
     }
