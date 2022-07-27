@@ -63,7 +63,7 @@
                     </td>
 
                     <td>
-                        {{ bookData.number }}
+                        {{ bookData.quantity }}
                     </td>
                  
        
@@ -114,28 +114,30 @@
         </thead>
 
         <tbody>
-            {% for bookData in requests %}
+            {% for data in bookData %}
                    
                 <tr align="center">
-                {% if bookData.status == 0 %}
+                {% if data.status == 0 %}
                     <td>
-                        {{ bookData.bookName }}
+                        {{ data.bookName }}
                     </td>
                     <td>
-                        {{ bookData.username }} 
+                        {{ data.username }} 
                     </td>
                     <td>   
                        <form action= "/acceptReq" method = "POST">
-                        <input type="hidden" id="bookName" name="bookName" value="{{ bookData.bookName }}">
-                       <input type="hidden" id="username" name="username" value="{{ bookData.username }}">
+                        <input type="hidden" id="bookName" name="bookName" value="{{ data.bookName }}">
+                        <input type="hidden" id="ID" name="ID" value="{{ data.ID }}">
+                       <input type="hidden" id="username" name="username" value="{{ data.username }}">
                                          
                      <button  type="submit" class="btn btn-primary">Accept</button>
                      </form> 
                     </td>
                      <td>
                      <form action= "/denyReq" method = "POST">
-                     <input type="hidden" id="bookName" name="bookName" value = "{{ bookData.bookName }}">
-                     <input type="hidden" id="username" name="username" value="{{ bookData.username }}">                       
+                     <input type="hidden" id="bookName" name="bookName" value = "{{ data.bookName }}">
+                     <input type="hidden" id="username" name="username" value="{{ data.username }}">   
+                     <input type="hidden" id="ID" name="ID" value="{{ data.ID }}">                     
                      <button  type="submit" class="btn btn-primary">Deny</button>
                      </form> 
                    

@@ -58,13 +58,14 @@
                     </td>
 
                     <td>
-                        {{ bookData.number }}
+                        {{ bookData.quantity }}
                     </td>
                  
                     <td>
                     <form action= "/checkIn" method = "POST">
                     <input type="text" name="username" hidden value="{{ client.username }}">
-                     <input type="text" name="bookName" hidden value = "{{ bookData.bookName }}">
+                     <input type="text" name="ID" hidden value = "{{ bookData.ID }}">
+                      <input type="text" name="bookName" hidden value = "{{ bookData.bookName }}">
                         
                          <button  type="submit" class="btn btn-primary">Check In</button>
                           </form> 
@@ -94,7 +95,7 @@
         </thead>
 
         <tbody>
-            {% for data in requests %}
+            {% for data in bookData %}
                    
                 <tr align="center">   
                     {% if data.status == 1 and data.username == client.username %}
@@ -103,8 +104,9 @@
                     </td>
                     <td>
                      <form action= "/checkOut" method = "POST">
-                       <input  id="bookName" name="bookName"  type="hidden" value="{{ data.bookName }}">
+                       <input  id="ID" name="ID"  type="hidden" value="{{ data.ID }}">
                        <input  id="username" name="username" type="hidden" value="{{ client.username }}">
+                       <input  id="bookName" name="bookName" type="hidden" value="{{ client.bookName }}">
                                        
                      <button  type="submit" class="btn btn-primary">Check Out</button>
                      </form> 
@@ -121,8 +123,7 @@
 <p >The amount of pending fine is {{ client.fine }}</p>
 
 
-<h3> Pending requests </h3>
-    
+<h3> Pending bookData </h3>
     <table class="table table-dark table-striped" id="books">
         <thead>
             <tr align="center">
@@ -134,12 +135,12 @@
         </thead>
 
         <tbody>
-            {% for bookData in requests %}
-                   
+            {% for data in bookData %}
+                
                 <tr align="center">
-                {% if bookData.username == client.username and bookData.status == 0 %}
+                {% if data.username == client.username and data.status == 0 %}
                     <td>
-                        {{ bookData.bookName }}
+                        {{ data.bookName }}
                     </td>
                 {% endif %}
                    

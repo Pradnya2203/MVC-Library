@@ -15,20 +15,19 @@ class Book
     return $result;
   }
 
-  public static function addBookData($bookName, $number,$ID)
+  public static function addBookData($bookName, $quantity,$ID)
   {
-
     $db = \DB::get_instance();
-    $stmt = $db->prepare("INSERT INTO Book (bookName, number,ID) VALUES (?,?,?)");
-    $stmt->execute([$bookName, $number,$ID]);
-
-    return;
+    $stmt = $db->prepare("INSERT INTO Book (bookName, quantity,ID) VALUES (?,?,?)");
+    $stmt->execute([$bookName, $quantity,$ID]);
+    $result = $stmt->fetchAll();
+    return $result;
   }
 
-  public static function requests()
+  public static function bookData()
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("SELECT * FROM books");
+    $stmt = $db->prepare("SELECT * FROM record JOIN Book USING (ID) ");
     $stmt->execute();
     $result = $stmt->fetchAll();
     return $result;
@@ -48,89 +47,75 @@ class Book
 
 
 
-  public static function checkIn($bookName,$username)
+  public static function checkIn($ID,$username)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("INSERT INTO books (bookName,username) VALUES (?,?)");
-    $stmt->execute([$bookName, $username]);
-    return;
+    $stmt = $db->prepare("INSERT INTO record (ID,username) VALUES (?,?)");
+    return $stmt->execute([$ID, $username]);
+    
   }
 
-  public static function updateBook($bookName)
+  public static function updateBook($ID)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("UPDATE Book SET number=number+1 WHERE bookName='$bookName'");
-    $stmt->execute([$bookName]);
-    return;
+    $stmt = $db->prepare("UPDATE Book SET quantity=quantity+1 WHERE ID='$ID'");
+    return $stmt->execute([$ID]);
   }
 
-  public static function deleteBook($bookName,$username)
+  public static function deleteBook($ID,$username)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("DELETE FROM books WHERE username='$username' AND bookName='$bookName' ");
-    $stmt->execute([$bookName, $username]);
-    return;
+    $stmt = $db->prepare("DELETE FROM record WHERE username='$username' AND ID='$ID' ");
+    return $stmt->execute([$bookName, $username]);
   }
 
-  public static function setDate($bookName,$username)
+  public static function setDate($ID,$username)
   {
     date_default_timezone_set('Asia/Kolkata');
     $date = date('d-m-y h:i:s');
     $db = \DB::get_instance();
-    $stmt = $db->prepare("UPDATE books SET  returned_on='$date' WHERE username='$username' AND bookName='$bookName'");
-    $stmt->execute([$date,$bookName, $username]);
-    return;
+    $stmt = $db->prepare("UPDATE record SET  returned_on='$date' WHERE username='$username' AND ID='$ID'");
+    return $stmt->execute([$date,$ID, $username]);
+    
   }
 
   public static function setFine($username,$fine){
     $db = \DB::get_instance();
     $stmt = $db->prepare("UPDATE client SET fine=fine+$fine WHERE username='$username'");
-    $stmt->execute([$username, $fine]);
-    return;
+    return $stmt->execute([$username, $fine]);
+    
   }
 
-  public static function setStatus($bookName,$username)
-  {
-    $db = \DB::get_instance();
-    $stmt = $db->prepare("UPDATE books SET status='1' WHERE username='$username' AND bookName='$bookName'");
-    $stmt->execute([$bookName, $username]);
-    return;
-  }
 
   
-  public static function setStartDate($bookName,$username)
+  public static function setStartDate($ID,$username)
   {
     $db = \DB::get_instance();
     date_default_timezone_set('Asia/Kolkata');
     $date = date('d-m-y h:i:s');
-    $stmt = $db->prepare("UPDATE books SET issued_on='$date' WHERE username='$username' AND bookName='$bookName'");
-    $stmt->execute([$date,$bookName, $username]);
-    return;
+    $stmt = $db->prepare("UPDATE record SET issued_on='$date', status = '1' WHERE username='$username' AND ID='$ID'");
+    return $stmt->execute([$date,$ID, $username]);
+    
   }
 
   
   public static function updateNumber($bookName)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("UPDATE Book SET number=number-1 WHERE bookName='$bookName'");
-    $stmt->execute([$bookName]);
-    return;
+    $stmt = $db->prepare("UPDATE Book SET quantity=quantity-1 WHERE bookName='$bookName'");
+    return $stmt->execute([$bookName]);
+    
   }
 
 
-  public static function denyReq($bookName,$username)
+  public static function denyReq($ID,$username)
   {
     $db = \DB::get_instance();
-    $stmt = $db->prepare("DELETE FROM books WHERE username='$username' AND bookName='$bookName'");
-    $stmt->execute([$bookName, $username]);
-    return;
+    $stmt = $db->prepare("DELETE FROM record WHERE username='$username' AND ID='$ID'");
+    return $stmt->execute([$ID, $username]);
+    
   }
 
-  public static function books($username){
-    $db = \DB::get_instance();
-    $stmt = $db->prepare(" SELECT bookName,status FROM books JOIN Book USING (bookName) WHERE username='$username';");
-    $stmt->execute([$username]);
-    return;
-  }
+
 
 }

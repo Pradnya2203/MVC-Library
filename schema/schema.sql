@@ -10,17 +10,12 @@
 
 CREATE TABLE client (
   name varchar(255) ,
-  username varchar(255) ,
+  username varchar(255) NOT NULL PRIMARY KEY,
   password varchar(255),
   fine int DEFAULT 0,
   admin BIT DEFAULT 0
 );
 
---
--- MAKE username AS PRIMARY KEY
---
-ALTER TABLE client
-  ADD PRIMARY KEY (username);
 
 --
 -- Insert login details and use password blahblah for both users
@@ -38,8 +33,8 @@ INSERT INTO client VALUES('Mayuri','mayuri', ' b8dfd29b2dd922fd494fb63a427e519df
 
 
 
-CREATE TABLE books (
-  bookName varchar(255) ,
+CREATE TABLE record (
+  ID int ,
   username varchar(255) ,
   status int DEFAULT 0,
   issued_on datetime,
@@ -51,16 +46,11 @@ CREATE TABLE books (
 
 CREATE TABLE Book (
   bookName varchar(255) ,
-  number int DEFAULT 0,
-  ID int
+  quantity int DEFAULT 0,
+  ID int NOT NULL PRIMARY KEY
 );
 
---
--- MAKE ID AS PRIMARY KEY
---
 
-ALTER TABLE Book
-  ADD PRIMARY KEY (ID);
 
 INSERT INTO Book VALUES('Dune', 9,1);
 INSERT INTO Book VALUES('Harry Potter', 10,2);

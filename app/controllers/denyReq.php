@@ -21,13 +21,14 @@ class DenyReq{
 
         $bookName = $_POST["bookName"];
         $username = $_POST["username"];
+        $ID = $_POST["ID"];
     
-        \Model\Book::denyReq($bookName,$username);
+        \Model\Book::denyReq($ID,$username);
        
      
     echo \View\Loader::make()->render("templates/admin.twig", array(
         "confirm" => "Denied request",
-        "requests" => \Model\Book::requests(),
+        "bookData" => \Model\Book::bookData(),
         "booksAvailable" => \Model\Book::findAvailable(),
      ));
 

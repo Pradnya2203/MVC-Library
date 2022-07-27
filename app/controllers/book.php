@@ -34,7 +34,7 @@ public function post()
         
                     echo \View\Loader::make()->render("templates/admin.twig", array(
                         "error" => "Book is already present in Library",
-                        "requests" => \Model\Book::requests(),
+                        "bookData" => \Model\Book::bookData(),
                         "booksAvailable" => \Model\Book::findAvailable(),
                      ));
                         return;
@@ -45,7 +45,7 @@ public function post()
               
                 echo \View\Loader::make()->render("templates/admin.twig", array(
                     "error" => "enter a valid number or id",
-                    "requests" => \Model\Book::requests(),
+                    "bookData" => \Model\Book::bookData(),
                     "booksAvailable" => \Model\Book::findAvailable(),
                  ));
             } else {
@@ -53,7 +53,7 @@ public function post()
 
                  echo \View\Loader::make()->render("templates/admin.twig", array(
                     "confirm" => "added book data",
-                    "requests" => \Model\Book::requests(),
+                    "bookData" => \Model\Book::bookData(),
                     "booksAvailable" => \Model\Book::findAvailable(),
                  ));
             }

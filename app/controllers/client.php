@@ -27,7 +27,7 @@ class Client {
             $_SESSION["username"] = $username;
             $_SESSION["Role"] = "Admin";
                 echo \View\Loader::make()->render("templates/admin.twig",array(
-                    "requests" => \Model\Book::requests(),
+                    "bookData" => \Model\Book::bookData(),
                     "booksAvailable" => \Model\Book::findAvailable(),
                 ));
             }
@@ -36,7 +36,7 @@ class Client {
             echo \View\Loader::make()->render("templates/client.twig", array(
                 "client" => \Model\Client::verifyLogin($username,$password),
                 "booksAvailable" => \Model\Book::findAvailable(),
-                "requests" =>  \Model\Book::requests(),
+                "bookData" =>  \Model\Book::bookData($username),
                 ));
             
         } else {

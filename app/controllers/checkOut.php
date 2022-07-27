@@ -19,33 +19,35 @@ class CheckOut{
         session_start();
         $bookName = $_POST["bookName"];
         $username = $_POST["username"];
+        $ID = $_POST["ID"];
         
-        $books = \Model\Book::requests();
+        $bookData = \Model\Book::bookData();
         date_default_timezone_set('Asia/Kolkata');
         $date = date('d-m-y h:i:s');
 
-        foreach($books as $value){
-            if($value[0] == $bookName && $value[1] == $username){
+        foreach($bookData as $value){
+            if($value[5] == $bookName && $value[1] == $username){
                 $Date = $value[3];
             }
         }
-
-        $fine = (($date-$Date[3])/1000*60*60*24)-7;
+        echo $Date;
+        $fine = (($date-$Date)/1000*60*60*24)-7;
         if($fine <=0){
             $fine=0;
         }
+        echo $fine;
 
-        \Model\Book::setDate($bookName,$username);
-        \Model\Book::deleteBook($bookName,$username);
-        \Model\Book::setFine($bookName,$fine);
-        \Model\Book::updateBook($bookName);
+        \Model\Book::setDate($ID,$username);
+        \Model\Book::deleteBook($ID,$username);
+        \Model\Book::setFine($username,$fine);
+        \Model\Book::updateBook($ID);
        
 
         echo \View\Loader::make()->render("templates/client.twig", array(
             "confirm" => "$bookName Checked Out",
-            "client" => \Model\Client::verifyLogin($username,$password),
+            "client" => \Model\Client::verifyLogin($username),
             "booksAvailable" => \Model\Book::findAvailable(),
-            "requests" =>  \Model\Book::requests(),
+            "bookData" =>  \Model\Book::bookData(),
             
             ));
     }

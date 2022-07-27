@@ -22,16 +22,17 @@ class AcceptReq{
         
     $bookName = $_POST["bookName"];
     $username = $_POST["username"];
+    $ID = $_POST["ID"];
   
-    \Model\Book::setStatus($bookName,$username);
-    \Model\Book:: setStartDate($bookName,$username);
+    
+    \Model\Book:: setStartDate($ID,$username);
     \Model\Book::updateNumber($bookName);
 
     
   
     echo \View\Loader::make()->render("templates/admin.twig", array(
         "confirm" => "Accepted request",
-        "requests" => \Model\Book::requests(),
+        "bookData" => \Model\Book::bookData(),
         "booksAvailable" => \Model\Book::findAvailable(),
      ));
 
