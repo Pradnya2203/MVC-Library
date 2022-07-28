@@ -37,7 +37,7 @@ class CheckIn{
             echo \View\Loader::make()->render("templates/client.twig", array(
                 "error" => "No books available",
                 "client" => \Model\Client::verifyLogin($username),
-                "booksAvailable" => $availableBook(),
+                "booksAvailable" => $availableBook,
                 "bookData" =>  $bookData,
              ));
         }else{
@@ -49,7 +49,7 @@ class CheckIn{
                     echo \View\Loader::make()->render("templates/client.twig", array(
                         "error" => "Already Checked in",
                         "client" => \Model\Client::verifyLogin($username),
-                        "booksAvailable" => $availableBook(),
+                        "booksAvailable" => $availableBook,
                         "bookData" =>  $bookData,
                         ));
                         return;
@@ -66,7 +66,7 @@ class CheckIn{
                 echo \View\Loader::make()->render("templates/client.twig", array(
                     "confirm" => "Check in request sent",
                     "client" => \Model\Client::verifyLogin($username),
-                    "booksAvailable" => $availableBook(),
+                    "booksAvailable" => $availableBook,
                     "bookData" =>  $bookData,
                     ));
                 

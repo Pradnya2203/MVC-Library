@@ -4,6 +4,12 @@
 {% block title %}My website home{% endblock %}
 
 {% block body %}
+
+<div class="confirmMessage">
+  <h3>{{ confirm }}</h3>
+
+</div>
+
 <h1>Welcome to Artemis Library</h1>
 <p><b>We help you find the stories you love!</b></p>
 <form action = "/client" method = "POST" >
