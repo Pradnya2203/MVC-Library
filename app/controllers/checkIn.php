@@ -22,9 +22,8 @@ class CheckIn{
         $username = $_POST["username"];
         $ID = $_POST["ID"];
 
-        $bookData = \Model\Book::bookData();   
         $availableBook = \Model\Book::findAvailable();
-        
+        $bookData =  \Model\Book::bookData();
         foreach ($availableBook as $value){
             if($value[0]==$bookName){
                 $number = $value[1];
@@ -37,8 +36,8 @@ class CheckIn{
             echo \View\Loader::make()->render("templates/client.twig", array(
                 "error" => "No books available",
                 "client" => \Model\Client::verifyLogin($username),
-                "booksAvailable" => $availableBook,
-                "bookData" =>  $bookData,
+                "booksAvailable" => \Model\Book::findAvailable(),
+                "bookData" =>  \Model\Book::bookData(),
              ));
         }else{
          
@@ -49,8 +48,8 @@ class CheckIn{
                     echo \View\Loader::make()->render("templates/client.twig", array(
                         "error" => "Already Checked in",
                         "client" => \Model\Client::verifyLogin($username),
-                        "booksAvailable" => $availableBook,
-                        "bookData" =>  $bookData,
+                        "booksAvailable" => \Model\Book::findAvailable(),
+                        "bookData" =>  \Model\Book::bookData(),
                         ));
                         return;
                 }
@@ -58,7 +57,6 @@ class CheckIn{
             
                 
             
-
                 \Model\Book::checkIn($ID,$username);
 
             
@@ -66,8 +64,8 @@ class CheckIn{
                 echo \View\Loader::make()->render("templates/client.twig", array(
                     "confirm" => "Check in request sent",
                     "client" => \Model\Client::verifyLogin($username),
-                    "booksAvailable" => $availableBook,
-                    "bookData" =>  $bookData,
+                    "booksAvailable" => \Model\Book::findAvailable(),
+                    "bookData" =>  \Model\Book::bookData(),
                     ));
                 
                 }

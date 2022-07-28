@@ -42,10 +42,10 @@ public function post()
                 }
             }
             
-            if ($number < 0 || $ID < 0) {
+            if ($number < 0 || $ID < 0 || $bookName = "" || !is_int($number) || !is_int($ID)) {
               
                 echo \View\Loader::make()->render("templates/admin.twig", array(
-                    "error" => "enter a valid number or id",
+                    "error" => "enter a valid info",
                     "bookData" => $bookData,
                     "booksAvailable" => $booksAvailable,
                    

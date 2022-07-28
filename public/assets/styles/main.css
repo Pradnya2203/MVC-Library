@@ -86,11 +86,13 @@ display: none;  }
 
   .errorMessage {
     color: red;
-    background-color: #b7b3b3;
+    background-color: #be6f6f;
+    text-align: center;
   }
   .confirmMessage {
     color: green;
-    background-color: #b7b3b3;
+    background-color: #63b681;
+    text-align: center;
   }
   .home{
    margin-left: 80%;
