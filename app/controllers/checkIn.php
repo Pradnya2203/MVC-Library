@@ -22,8 +22,7 @@ class CheckIn{
         $username = $_POST["username"];
         $ID = $_POST["ID"];
 
-        $bookData = \Model\Book::bookData();
-       
+        $bookData = \Model\Book::bookData();   
         $availableBook = \Model\Book::findAvailable();
         
         foreach ($availableBook as $value){
@@ -38,8 +37,8 @@ class CheckIn{
             echo \View\Loader::make()->render("templates/client.twig", array(
                 "error" => "No books available",
                 "client" => \Model\Client::verifyLogin($username),
-                "booksAvailable" => \Model\Book::findAvailable(),
-                "bookData" =>  \Model\Book::bookData(),
+                "booksAvailable" => $availableBook(),
+                "bookData" =>  $bookData,
              ));
         }else{
          
@@ -50,8 +49,8 @@ class CheckIn{
                     echo \View\Loader::make()->render("templates/client.twig", array(
                         "error" => "Already Checked in",
                         "client" => \Model\Client::verifyLogin($username),
-                        "booksAvailable" => \Model\Book::findAvailable(),
-                        "bookData" =>  \Model\Book::bookData(),
+                        "booksAvailable" => $availableBook(),
+                        "bookData" =>  $bookData,
                         ));
                         return;
                 }
@@ -67,8 +66,8 @@ class CheckIn{
                 echo \View\Loader::make()->render("templates/client.twig", array(
                     "confirm" => "Check in request sent",
                     "client" => \Model\Client::verifyLogin($username),
-                    "booksAvailable" => \Model\Book::findAvailable(),
-                    "bookData" =>  \Model\Book::bookData(),
+                    "booksAvailable" => $availableBook(),
+                    "bookData" =>  $bookData,
                     ));
                 
                 }

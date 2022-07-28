@@ -25,8 +25,9 @@ public function post()
             $bookName = $_POST["bookName"];
             $number = $_POST["number"];
             $ID = $_POST["ID"];
-
             $id = \Model\Book::ID();
+            $bookData = \Model\Book::bookData();
+            $booksAvailable = \Model\Book::findAvailable();
        
      
             foreach ($Book as $value) {
@@ -34,8 +35,8 @@ public function post()
         
                     echo \View\Loader::make()->render("templates/admin.twig", array(
                         "error" => "Book is already present in Library",
-                        "bookData" => \Model\Book::bookData(),
-                        "booksAvailable" => \Model\Book::findAvailable(),
+                        "bookData" => $bookData,
+                        "booksAvailable" => $booksAvailable,
                      ));
                         return;
                 }
@@ -45,16 +46,17 @@ public function post()
               
                 echo \View\Loader::make()->render("templates/admin.twig", array(
                     "error" => "enter a valid number or id",
-                    "bookData" => \Model\Book::bookData(),
-                    "booksAvailable" => \Model\Book::findAvailable(),
+                    "bookData" => $bookData,
+                    "booksAvailable" => $booksAvailable,
+                   
                  ));
             } else {
                 \Model\Book::addBookData($bookName, $number,$ID);
 
                  echo \View\Loader::make()->render("templates/admin.twig", array(
                     "confirm" => "added book data",
-                    "bookData" => \Model\Book::bookData(),
-                    "booksAvailable" => \Model\Book::findAvailable(),
+                    "bookData" => $bookData,
+                    "booksAvailable" => $booksAvailable,
                  ));
             }
         }
